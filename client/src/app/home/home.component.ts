@@ -85,18 +85,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   protected loadCurrentConf() {
     let conf = JSON.parse(localStorage.getItem(HomeComponent.LS_CURRENT_CONF_KEY));
-    console.log('CONF', conf);
-    if (conf.socketUrl) {
-      this.formSocket.url = conf.socketUrl;
-      this.connect();
-    }
-    if (conf.listeningCodes) {
-      this.listeningCodes = conf.listeningCodes;
-      this.setListeners();
-    }
-    if (conf.lastMessageForm) {
-      this.formSend = conf.lastMessageForm;
-      this.setListeners();
+
+    if (conf) {
+      if (typeof conf.socketUrl !== 'undefined' && conf.socketUrl) {
+        this.formSocket.url = conf.socketUrl;
+        this.connect();
+      }
+      if (typeof conf.listeningCodes !== 'undefined' && conf.listeningCodes) {
+        this.listeningCodes = conf.listeningCodes;
+        this.setListeners();
+      }
+      if (typeof conf.lastMessageForm !== 'undefined' && conf.lastMessageForm) {
+        this.formSend = conf.lastMessageForm;
+        this.setListeners();
+      }
     }
   }
   protected messageSent(data): void {

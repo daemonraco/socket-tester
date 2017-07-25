@@ -1,6 +1,6 @@
 'use strict'
 
-var { app, BrowserWindow } = require('electron');
+var { app, BrowserWindow, Menu } = require('electron');
 var path = require('path');
 var url = require('url');
 var chalk = require('chalk');
@@ -25,6 +25,8 @@ app.on('ready', () => {
             slashes: true
         }));
     }
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
 
     win.webContents.openDevTools();
 

@@ -23,6 +23,8 @@
     "@angular/router": "^4.0.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "electron": "^1.6.11",
+    "fs": "0.0.1-security",
     "ng-block-ui": "^0.9.0",
     "ngx-bootstrap": "^1.8.0",
     "node-sass": "^4.5.3",
