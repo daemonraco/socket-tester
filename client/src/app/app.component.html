@@ -1,0 +1,16 @@
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body [class]="bodyClass">
+  <block-ui [message]="'Loading...'">
+    <!--app-nav-bar></app-nav-bar-->
+    <div [class]="mainClass">
+      <router-outlet></router-outlet>
+    </div>
+  </block-ui>
+</body>

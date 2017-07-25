@@ -1,0 +1,19 @@
+{
+  "name": "socket.io-tester",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:dev": "electron . dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.6.11"
+  },
+  "dependencies": {
+    "chalk": "^2.0.1"
+  }
+}

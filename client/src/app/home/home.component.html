@@ -1,0 +1,62 @@
+<div class="SocketTester container">
+  <div class="row">
+    <form class="form-inline" role="form" (ngSubmit)="connect()">
+      <div class="form-group">
+        <label class="sr-only" for="formSocket_url">Socket</label>
+        <input type="url" class="form-control input-sm" name="url" id="formSocket_url" placeholder="Socket url..." [(ngModel)]="formSocket.url">
+      </div>
+
+      <button type="submit" class="btn btn-sm btn-primary">Connect</button>
+    </form>
+  </div>
+
+  <hr/>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <form role="form" (ngSubmit)="send()">
+        <div class="form-group">
+          <label for="formSend_code">Code</label>
+          <input type="text" class="form-control input-sm" name="code" id="formSend_code" placeholder="" [(ngModel)]="formSend.code">
+        </div>
+
+        <div class="form-group">
+          <label for="formSend_message">Message</label>
+          <input type="text" class="form-control input-sm" name="message" id="formSend_message" placeholder="" [(ngModel)]="formSend.message">
+        </div>
+
+        <button type="submit" class="btn btn-sm btn-primary">Send</button>
+      </form>
+    </div>
+
+    <div class="col-xs-6">
+      <div id="Messages">
+        <p *ngFor="let item of messages" [class]="item.class">
+          {{item.code}}
+          <code>{{item.message}}</code>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-xs-3">
+      <form role="form" (ngSubmit)="listenFor()">
+        <div class="form-group">
+          <label for="formListen_code">Code</label>
+          <input type="text" class="form-control input-sm" name="code" id="formListen_code" placeholder="" [(ngModel)]="formListen.code">
+        </div>
+
+        <button type="submit" class="btn btn-sm btn-primary">Listen for</button>
+      </form>
+
+      <div *ngIf="listeningCodes.length">
+        <hr/>
+
+        <p *ngFor="let item of listeningCodes" class="bg-default">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="stopListeningFor(item)">
+            <span aria-hidden="true">&times;</span>
+          </button> {{item.code}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
