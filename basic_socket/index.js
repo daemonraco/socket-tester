@@ -10,6 +10,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('add-message', (message) => {
+        console.log('add-message');
         io.emit('message', { type: 'new-message', text: message });
     });
 });

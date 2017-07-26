@@ -61,20 +61,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadCurrentConf();
-    //DEBUG
-    /*
-    this.formSocket.url = 'http://localhost:5000';
-    this.connect();
-    this.formSend.code = 'add-message';
-    this.formSend.message = 'hello world!';
-    this.formListen.code = 'message';
-    this.listenFor();
-    this.send();
-    */
-    //DEBUG
   }
   ngOnDestroy() {
     this.closeListeners();
+    this.socket.disconnect();
   }
 
   protected closeListeners(): void {

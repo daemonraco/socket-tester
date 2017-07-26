@@ -15,6 +15,20 @@ export class AppComponent {
   title = 'app';
 
   constructor() {
-    remote.Menu.setApplicationMenu(remote.Menu.buildFromTemplate(MenuTemplate));
+    const menu = MenuTemplate.generate(this);
+    remote.Menu.setApplicationMenu(remote.Menu.buildFromTemplate(menu));
+  }
+
+  public export(): void {
+    console.log('EXPORT');
+  }
+  public import(): void {
+    console.log('IMPORT');
+  }
+  public save(): void {
+    console.log('SAVE');
+  }
+  public saveAs(): void {
+    console.log('SAVE AS');
   }
 }

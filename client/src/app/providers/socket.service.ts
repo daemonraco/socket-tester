@@ -5,7 +5,7 @@ import * as io from 'socket.io-client';
 
 @Injectable()
 export class SocketService {
-  private url = 'http://localhost:5000';
+  private url = '';
   private socket: any = false;
 
   constructor() {
@@ -15,26 +15,33 @@ export class SocketService {
     return this.socket !== false;
   }
   connect(url: string) {
-    if (this.socket !== false) {
-      this.socket.disconnect();
-      this.socket = false;
-    }
+    this.disconnect();
 
     this.url = url;
     this.socket = io(this.url);
   }
+  disconnect() {
+    if (this.connected()) {
+      this.socket.disconnect();
+      this.socket = false;
+    }
+  }
   getMessages(code: string) {
-    let observable = new Observable(observer => {
-      this.socket.on(code, data => {
-        observer.next({ code, data });
+    if (this.connected()) {
+      let observable = new Observable(observer => {
+        this.socket.on(code, data => {
+          observer.next({ code, data });
+        });
+        return () => {
+          this.socket.disconnect();
+        }
       });
-      return () => {
-        this.socket.disconnect();
-      }
-    });
-    return observable;
+      return observable;
+    }
   }
   sendMessage(code: string, message: any) {
-    this.socket.emit(code, message);
+    if (this.connected()) {
+      this.socket.emit(code, message);
+    }
   }
 }
